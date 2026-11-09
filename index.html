@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALEX RIVERA // 3D Video Editor & Motion Director</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles/style.css">
+</head>
+<body>
+  <!-- 3D WebGL Canvas Container -->
+  <div id="canvas-container"></div>
+
+  <!-- Top Director Header Bar -->
+  <header class="top-header">
+    <div class="brand">
+      <div class="brand-text">
+        <h1>ALEX RIVERA</h1>
+        <p>3D VIDEO EDITOR & COLORIST</p>
+      </div>
+    </div>
+
+    <!-- Director Camera Angle Switcher -->
+    <div class="shot-switcher">
+      <button class="shot-btn active" data-shot="0">SHOT 01: MASTER</button>
+      <button class="shot-btn" data-shot="1">SHOT 02: TRACKING</button>
+      <button class="shot-btn" data-shot="2">SHOT 03: ROOFTOP</button>
+      <button class="shot-btn" data-shot="3">FREE ORBIT</button>
+    </div>
+
+    <div class="header-right">
+      <button id="sound-btn" class="header-btn">
+        <span>🔊</span>
+        <span id="sound-label">UNMUTE</span>
+      </button>
+      <button id="drawer-btn" class="header-btn primary">
+        <span>PORTFOLIO INTEL</span>
+        <span>→</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Colorist Grading Rack (Real-Time Look LUTs) -->
+  <aside class="colorist-rack">
+    <div class="rack-title">COLORIST SUITE // LUT</div>
+    <div class="lut-buttons">
+      <button class="lut-btn active" data-lut="1">
+        <span class="lut-indicator"></span>
+        <span>TEAL & ORANGE</span>
+      </button>
+      <button class="lut-btn" data-lut="0">
+        <span class="lut-indicator"></span>
+        <span>REC.709 NATURAL</span>
+      </button>
+      <button class="lut-btn" data-lut="2">
+        <span class="lut-indicator"></span>
+        <span>FILM NOIR B&W</span>
+      </button>
+      <button class="lut-btn" data-lut="3">
+        <span class="lut-indicator"></span>
+        <span>CYBER MATRIX</span>
+      </button>
+    </div>
+
+    <div class="rack-title" style="margin-top: 0.5rem;">POST FX</div>
+    <label class="fx-checkbox-label">
+      <input type="checkbox" id="scanlines-chk" checked>
+      <span>CRT Scanlines</span>
+    </label>
+    <label class="fx-checkbox-label">
+      <input type="checkbox" id="grain-chk" checked>
+      <span>35mm Film Grain</span>
+    </label>
+  </aside>
+
+  <!-- Bottom NLE Keyframe Timeline Console -->
+  <footer class="timeline-console">
+    <div class="timeline-top-deck">
+      <div class="transport-controls">
+        <button id="btn-rw" class="ctrl-btn" title="Reverse (J)">⏮</button>
+        <button id="btn-play" class="ctrl-btn play-btn" title="Play/Pause (Space / K)">⏸</button>
+        <button id="btn-ff" class="ctrl-btn" title="Fast Forward (L)">⏭</button>
+        <span class="speed-badge" id="speed-badge">1.0x</span>
+      </div>
+
+      <div class="timecode-readout">
+        <span class="tc-label">TC</span>
+        <span id="tc-display" class="tc-value">00:00:00:00</span>
+      </div>
+
+      <div class="speed-badge">
+        <span>24.000 FPS // ANIMATION MIXER</span>
+      </div>
+    </div>
+
+    <!-- Interactive Keyframe Timeline Scrubber -->
+    <div id="timeline-track" class="scrub-track-wrapper">
+      <!-- Video Track -->
+      <div class="track-layer video-track">
+        <div class="clip-block clip-1">SHOT 01: CITY WIDE</div>
+        <div class="clip-block clip-2">SHOT 02: TRAIN PASS</div>
+        <div class="clip-block clip-3">SHOT 03: NIGHT LIGHTS</div>
+      </div>
+
+      <!-- Keyframe Track -->
+      <div class="track-layer keyframe-track">
+        <div class="keyframe-diamond" style="left: 0%;" title="Keyframe: Scene Start"></div>
+        <div class="keyframe-diamond" style="left: 28%;" title="Keyframe: Camera Cut 1"></div>
+        <div class="keyframe-diamond" style="left: 65%;" title="Keyframe: Speed Ramp"></div>
+        <div class="keyframe-diamond" style="left: 98%;" title="Keyframe: End Transition"></div>
+      </div>
+
+      <!-- Red Playhead Needle -->
+      <div id="playhead-needle" class="playhead-needle"></div>
+    </div>
+  </footer>
+
+  <!-- Portfolio & Case Study Slide-out Drawer -->
+  <aside id="case-drawer" class="case-drawer">
+    <div class="drawer-header">
+      <div>
+        <h2 class="drawer-title">ALEX RIVERA</h2>
+        <span class="drawer-sub">DIRECTOR OF EDITORIAL & COLOR</span>
+      </div>
+      <button id="close-drawer-btn" class="drawer-close">&times;</button>
+    </div>
+
+    <div class="drawer-section">
+      <h3>ABOUT THE WORK</h3>
+      <p>
+        Specialized in high-tempo narrative pacing, complex multi-cam rhythm, and precision
+        color grading for commercial campaigns, music films, and feature VFX sequences.
+      </p>
+    </div>
+
+    <div class="drawer-section">
+      <h3>FEATURED CLIENT ROSTER</h3>
+      <p>
+        Nike Global • Porsche Motorsport • Sony Music Entertainment • A24 Films • Apple TV+
+      </p>
+    </div>
+
+    <div class="drawer-section">
+      <h3>CORE EDITORIAL TOOLKIT</h3>
+      <div class="tools-grid">
+        <span class="tool-chip">DaVinci Resolve Studio</span>
+        <span class="tool-chip">Adobe Premiere Pro</span>
+        <span class="tool-chip">After Effects</span>
+        <span class="tool-chip">Three.js / WebGL</span>
+        <span class="tool-chip">Avid Media Composer</span>
+        <span class="tool-chip">ACEScg Color Management</span>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>AWARDS & RECOGNITION</h3>
+      <p>
+        Cannes Lions 2025 (Bronze - Craft in Editing) • AICP Post Awards (Best Color Grading) •
+        Vimeo Staff Pick Premiere (x4).
+      </p>
+    </div>
+  </aside>
+
+  <!-- Main Application Script -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

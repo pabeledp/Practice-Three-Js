@@ -1,0 +1,29 @@
+{
+  "name": "practice-three-js-video-editor-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive 3D Video Editor & Motion Designer Portfolio built with modern Three.js and WebGL/WebGPU shaders",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "threejs",
+    "video-editor",
+    "portfolio",
+    "3d",
+    "webgpu",
+    "tsl",
+    "shaders",
+    "creative-development"
+  ],
+  "author": "Antigravity Pair Programmer",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}
